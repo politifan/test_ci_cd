@@ -1,0 +1,34 @@
+services:
+  api-dev:
+    build:
+      context: .
+    container_name: test-ci-cd-dev
+    restart: unless-stopped
+    environment:
+      APP_ENV: dev
+      APP_VERSION: ${APP_VERSION:-local}
+    ports:
+      - "8005:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health').read()"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  api-prod:
+    build:
+      context: .
+    container_name: test-ci-cd-prod
+    restart: unless-stopped
+    environment:
+      APP_ENV: prod
+      APP_VERSION: ${APP_VERSION:-local}
+    ports:
+      - "8009:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health').read()"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
