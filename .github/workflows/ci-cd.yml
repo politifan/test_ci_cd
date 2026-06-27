@@ -57,6 +57,10 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
+          if [ -z "${SSH_PRIVATE_KEY}" ]; then
+            echo "::error::Repository secret SSH_PRIVATE_KEY is required for deployment."
+            exit 1
+          fi
           mkdir -p ~/.ssh
           printf '%s\n' "${SSH_PRIVATE_KEY}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
