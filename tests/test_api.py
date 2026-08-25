@@ -28,9 +28,7 @@ def test_health_returns_ok_for_prod_environment(monkeypatch):
 
 
 
-
-
-    assert response.status_code == 200 # hello
+    assert response.status_code == 200 # hello2
     payload = response.json()
     assert payload["status"] == "ok"
     assert payload["environment"] == "prod"
