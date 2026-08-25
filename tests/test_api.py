@@ -26,7 +26,11 @@ def test_health_returns_ok_for_prod_environment(monkeypatch):
     client = TestClient(create_app())
     response = client.get("/health")
 
-    assert response.status_code == 200
+
+
+
+
+    assert response.status_code == 200 # hello
     payload = response.json()
     assert payload["status"] == "ok"
     assert payload["environment"] == "prod"
