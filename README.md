@@ -32,3 +32,27 @@ Useful endpoints:
 ```bash
 python -m pytest tests/
 ```
+
+## Portfolio scope
+
+Educational FastAPI service for testing environment configuration and HTTP
+responses. This is a practice project, not evidence of production operations.
+
+| Capability | Evidence |
+| --- | --- |
+| Application factory and response model | `app/main.py` |
+| Environment and version settings | `APP_ENV`, `APP_VERSION` |
+| Endpoint and configuration tests | `tests/test_api.py` |
+| Push and pull request checks | `.github/workflows/ci.yml` |
+
+Run tests from the repository root so the `app` package resolves:
+
+```bash
+python -m pytest tests/ -q
+```
+
+The workflow runs these tests on Python 3.12. Consult Actions for the actual run
+status. The project does not implement deployment, a container, an external
+database or production monitoring. `/health` only reports application status.
+
+See [the project walkthrough](docs/portfolio.md) for a short interview demo.
